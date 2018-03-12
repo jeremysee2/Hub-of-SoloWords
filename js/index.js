@@ -1,29 +1,68 @@
-window.onload = function(){
+/*
+  @file
 
-  var ourRequest = new XMLHttpRequest();
-  ourRequest.open('POST','displayVocabBook.php');
-  ourRequest.onreadystatechange = function () {
-    //function to be executed when a response is received
-    $('.myvocabbook').html = ourRequest.responseText;
-  };
-  ourRequest.send(); //send request
+  Last modification: 12 March 2018
+
+  This js file queries the word database through displayVocabBook.php,
+  allowing registered users to search for words in their vocabulary book.
+
+*/
+
+$(document).ready( function(){
+
+  var results = $("#myvocabbook");
+
+  $.post("displayVocabBook.php",
+  function(data){
+    //display results in index.php 
+    results.html(data);
+  });
 
 
   $('.submitSearch').click( function () {
-  var searchfield = $('.searchfield').val;
-  var ourSearchString = "searchfield=" + searchfield;
-  ourRequest.open('POST', 'displayVocabBook.php',true);
-  ourRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); //To tell that we are sending our data in the format key=value.
-  ourRequest.onreadystatechange = function() {
-    //function to be executed when a response is received
-    if(ourRequest.readyState == 4 && ourRequest.status == 200) {
-        var return_data = ourRequest.responseText;
-        $('.myvocabbook').html= return_data;
-    }
-  }
-  ourRequest.send(ourSearchString); // Actually execute the request
+
+    var inputVal = $(this).val();
+    
+    $.post("displayVocabBook.php",
+    {
+      searchfield: inputVal
+    },
+    function(data){
+      //display results in index.php 
+      results.html(data);
+    });
   });
 
-}
-$('.collapse').collapse();
+
+  $('#searchfield').keyup( function(){
+    /* Get input value on change */
+    var inputVal = $(this).val();
+
+    if(inputVal.length){
+
+      $.post("displayVocabBook.php",
+      {
+        searchfield: inputVal,
+      },
+      function(data){
+        //display results in index.php 
+        results.html(data);
+      });
+
+    } else{ //What to do when searchfield is empty - display all results in index.php
+
+      $.post("displayVocabBook.php",
+      function(data){ 
+        //display results in index.php 
+        results.html(data);
+      });
+      
+    }
+  });
+
+  $('.collapse').collapse({'toggle':false});
+  $('.collapse.in').collapse('hide');
+  $('.collapse').collapse('show');
+  
+});
 

@@ -10,9 +10,6 @@ session_start();
   This php file displays words saved by a particular user to the website.
   It does NOT generate a complete HTML page by itself. 
 
-*/
-
-?>
 
 <style>
 table {
@@ -28,6 +25,16 @@ table, td, th {
 
 th {text-align: left;}
 </style>
+
+
+
+
+*/
+
+
+
+?>
+
 
 <?php
 
@@ -55,18 +62,27 @@ if (!$result || $result->num_rows === 0) { //Empty set is returned
   echo "<br><p>No results found. :'(</p>";
 } else {
   echo "<br>
-  <table>
+  <div class=\"col-sm-10\">
+  <table class=\"table table-bordered\" align=\"center\">
+  <thead>
   <tr>
-  <th>Word name</th>
-  </tr>";
+  <th scope=\"col\">Word name</th>
+  <th scope=\"col\">Word meaning</th>
+  </tr>
+  </thead>";
   while($row = mysqli_fetch_array($result)) {
-      echo "<tr>";
-      echo "<td>" . $row['word_name'] . "
+      echo "
+      <tbody>
+      <tr>
+      <th scope = \"row\"></th>
+      </tr>";
+      echo "<td>" . $row['word_name'] . "</td>
+
+      <td>
       <button data-toggle='collapse' data-target='#showID" . $row['word_id'] . "'>Meaning</button>
+      <div id='showID". $row['word_id'] . "' class='collapse'>" . $row['word_meaning'] . "</div>
 
       <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#modalCenterFor" . $row['word_id'] . "\"> Show meaning in modal </button>
-
-      <div id='showID". $row['word_id'] . "' class='collapse'>" . $row['word_meaning'] . "</div>
 
       <div class=\"modal fade\" id=\"modalCenterFor" .$row['word_id'] . "\"tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">
         <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
@@ -82,7 +98,6 @@ if (!$result || $result->num_rows === 0) { //Empty set is returned
           </div>
           <div class=\"modal-footer\">
             <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>
-            <button type=\"button\" class=\"btn btn-primary\">Save changes</button>
           </div>
         </div>
       </div>
@@ -90,10 +105,12 @@ if (!$result || $result->num_rows === 0) { //Empty set is returned
       </td>";
       echo "</tr>";
   }
-  echo "</table>";
+  echo "</table>
+  </div>";
 }
 
 close_connection:
     if(isset($link))   // Close connection if set
         mysqli_close($link);
 ?>
+
