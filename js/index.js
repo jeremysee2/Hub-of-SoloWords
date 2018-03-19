@@ -10,6 +10,7 @@ $(document).ready( function(){
 
 
     $('#login_form').submit( function(event) {
+      alert("submit handler called");
         event.preventDefault();
         var are_all_inputs_filled = true;
 
@@ -32,6 +33,7 @@ $(document).ready( function(){
         }
 
         if(are_all_inputs_filled){
+          alert("Username: " + $login_username + " Password: " + $login_password);
             //use ajax post to submit the username and password to login.php for validation
             $.post("login.php",
             {

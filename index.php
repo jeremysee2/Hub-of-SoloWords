@@ -10,23 +10,8 @@
 
     <title>Hub of SoloWords - your online vocabulary book</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/scrolling-nav.css" rel="stylesheet">
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom JavaScript for this theme -->
-    <script src="js/scrolling-nav.js"></script>
-    <!-- Custom JavaScript for this site -->
-    <script src="js/index.js"></script>
 
   </head>
 
@@ -67,12 +52,12 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>About this page</h2>
-            <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
+            <p class="lead">This webpage is your companion in learning new words</p>
             <ul>
-              <li>Clickable nav links that smooth scroll to page sections</li>
-              <li>Responsive behavior when clicking nav links perfect for a one page website</li>
-              <li>Bootstrap's scrollspy feature which highlights which section of the page you're on in the navbar</li>
-              <li>Minimal custom CSS so you are free to explore your own unique design options</li>
+              <li>You see, not all words or phrases you come across are in dictionaries.</li>
+              <li>Some are, but slangs and local dialect often are not.</li>
+              <li>It gets troublesome when you have different word lists with several online dictionaries, or have to write it into a notebook, only to lose it later.</li>
+              <li>So this website stores your words and phrases in a server. Your notes will be whereever you login.</li>
             </ul>
           </div>
         </div>
@@ -86,21 +71,22 @@
           <div class="wrapper">
             <h2>Log in</h2>
             <p class="lead">Log in to access your online vocabulary book</p>
-            <form id="login_form" method="post" action="login.php#login">
-              <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+            <form id="login_form" method="post" action="#login">
+
+              <div class="form-group">
                 <label>Username</label>
-                <input type="text" name="login_username" class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
+                <input type="text" name="login_username" class="form-control" required>
+                <span class="help-block"></span>
               </div>    
 
-              <div class="form-group <?php echo (!empty($passwd_err)) ? 'has-error' : ''; ?>">
+              <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="login_password" class="form-control">
-                <span class="help-block"><?php echo $passwd_err; ?></span>
+                <input type="password" name="login_password" class="form-control" required>
+                <span class="help-block"></span>
               </div>
 
               <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
+                <input type="submit" id="login_submit_button" class="btn btn-primary" value="Login">
               </div>
 
             </form>
@@ -122,13 +108,13 @@
               <form id="registration_form" method="post" action="register.php#register">
                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                   <label>Username</label>
-                  <input type="text" name="reg_username"class="form-control" value="<?php echo $username; ?>">
+                  <input type="text" name="reg_username"class="form-control" required>
                   <span class="help-block"><?php echo $username_err; ?></span>
                 </div>    
 
                 <div class="form-group <?php echo (!empty($passwd_err)) ? 'has-error' : ''; ?>">
                   <label>Password</label>
-                  <input type="password" name="reg_password" class="form-control" value="<?php echo $passwd; ?>">
+                  <input type="password" name="reg_password" class="form-control" required>
                   <span class="help-block"><?php echo $passwd_err; ?></span>
                 </div>
 
@@ -163,4 +149,22 @@
 
   </body>
 
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/scrolling-nav.css" rel="stylesheet">
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom JavaScript for this theme -->
+  <script src="js/scrolling-nav.js"></script>
+
+  <!-- Custom JavaScript for this site -->
+  <script src="js/index.js"></script>
 </html>
